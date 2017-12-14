@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 require('../configs/database');
 const Schema   = mongoose.Schema;
-const Role = ["superadmin","admin", "teacher", "student", "guest"];
+const ROLES    = require('./role-types');
 const userSchema = new Schema({
   email      : {
     type: String,
@@ -26,7 +26,7 @@ const userSchema = new Schema({
     "default": [],
     require: true
   }],
-  role: [{ type:String, enum: Role, required: true}]
+  role: { type: String, enum: ROLES, required: true },
   });
 
 const User = mongoose.model('User', userSchema);
