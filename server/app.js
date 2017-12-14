@@ -2,6 +2,7 @@ var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
+var ensureLogin = require('connect-ensure-login');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
@@ -11,6 +12,8 @@ var cors = require('cors');
 var session = require('express-session');
 var index = require('./routes/index');
 var authRoutes = require('./routes/auth-routes');
+var userRoute = require('./routes/user');
+
 require('./configs/database');
 require('./configs/multer');
 require('./configs/passport');
@@ -42,6 +45,8 @@ app.use(passport.session());
 
 app.use('/', index);
 app.use('/', authRoutes);
+app.use('/user', userRoute);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

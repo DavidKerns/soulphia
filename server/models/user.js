@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+var bcrypt = require('bcrypt');
+require('../configs/database');
 const Schema   = mongoose.Schema;
 const Role = ["superadmin","admin", "teacher", "student", "guest"];
 const userSchema = new Schema({
@@ -29,3 +31,14 @@ const userSchema = new Schema({
 
 const User = mongoose.model('User', userSchema);
 module.exports = User;
+
+module.exports.addUser = function (newUser, callback) {
+  bcrypt.genSalt(10, (err, salt) => {
+    bcrypt.hash( newUser.password, salt, (err, hash) => {
+      newUser.password = hash;
+      newUser.save(callback);
+      if (err) throw err;
+    });
+  });
+
+};
