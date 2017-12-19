@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
+const SUBJECT    = require('./class-types');
 const classSchema = new Schema({
   teacher: {
     type: Schema.Types.ObjectId,
@@ -11,6 +12,7 @@ const classSchema = new Schema({
     'default': []
   }],
   length: Number,
+  subject: { type: String, enum: SUBJECT, required: true },
 });
 
 const Class = mongoose.model('Class', classSchema);

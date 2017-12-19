@@ -4,7 +4,7 @@ const passport = require('passport');
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 
 router.get('/signup', ensureLoggedOut(), (req, res) => {
-    res.render('authentication/signup');
+    res.render('signup');
 });
 
 router.post('/signup', ensureLoggedOut(), passport.authenticate('local-signup', {
@@ -13,7 +13,7 @@ router.post('/signup', ensureLoggedOut(), passport.authenticate('local-signup', 
 }));
 
 router.get('/login', ensureLoggedOut(), (req, res) => {
-    res.render('authentication/login');
+    res.render('login');
 });
 
 router.post('/login', ensureLoggedOut(), passport.authenticate('local-login', {
