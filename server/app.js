@@ -1,5 +1,6 @@
 var express = require('express');
 var path = require('path');
+var mongoose = require('mongoose');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var ensureLogin = require('connect-ensure-login');
@@ -10,7 +11,6 @@ var multer = require('multer');
 var bcrypt = require('bcrypt');
 var cors = require('cors');
 var session = require('express-session');
-var index = require('./routes/index');
 var authRoutes = require('./routes/auth-routes');
 var userRoute = require('./routes/user');
 var classRoutes = require('./routes/classes');
@@ -19,8 +19,12 @@ require('./configs/database');
 require('./configs/multer');
 require('./configs/passport');
 
+mongoose.connect(process.env.MONGODB_URI);
 var app = express();
-app.use(cors());
+app.use(cors({
+  credentials:true,
+  origin: ['http://localhost:4200']
+}));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -46,7 +50,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-app.use('/', index);
+
 app.use('/', authRoutes);
 app.use('/user', userRoute);
 app.use('/classes', classRoutes);
