@@ -26,19 +26,13 @@ const userSchema = new Schema({
     "default": [],
     require: true
   }],
-  role: { type: String, enum: ROLES, required: true },
+  role: {
+    type: String,
+     enum: ROLES,
+     "default": 'guest',
+      required: true
+     },
   });
 
 const User = mongoose.model('User', userSchema);
 module.exports = User;
-
-module.exports.addUser = function (newUser, callback) {
-  bcrypt.genSalt(10, (err, salt) => {
-    bcrypt.hash( newUser.password, salt, (err, hash) => {
-      newUser.password = hash;
-      newUser.save(callback);
-      if (err) throw err;
-    });
-  });
-
-};

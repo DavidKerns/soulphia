@@ -41,63 +41,7 @@ app.use (
 
   })
 );
-passport.use('local-signup', new LocalStrategy(
-  { passReqToCallback: true },
-  (req, username, password, next) => {
-    console.log("req.body````````",req.body);
-    process.nextTick(() => {
-        User.findOne({
-            'username': username
-        }, (err, user) => {
-            if (err){ return next(err); }
 
-            if (user) {
-                return next(null, false);
-            } else {
-                // Destructure the body
-                const { username, email, position, address, password } = req.body;
-                const hashPass = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-                const newUser = new User({
-	                 // required stuff: email and password
-	                  username: req.body.username,
-	                  password: hashPass,
-	                   // anything extra goes in here too
-
-	                    email   : req.body.email,
-	                    position: req.body.position,
-                      role: req.body.role,
-
-                    });
-
-newUser.save((err) => {
-	if (err){ next(err); }
-	return next(null, newUser);
-});
-
-                newUser.save((err) => {
-                    if (err){ next(err); }
-                    return next(null, newUser);
-                });
-            }
-        });
-    });
-}));
-
-passport.use('local-login', new LocalStrategy((username, password, next) => {
-  User.findOne({ username }, (err, user) => {
-    if (err) {
-      return next(err);
-    }
-    if (!user) {
-      return next(null, false, { message: "Incorrect username" });
-    }
-    if (!bcrypt.compareSync(password, user.password)) {
-      return next(null, false, { message: "Incorrect password" });
-    }
-
-    return next(null, user);
-  });
-}));
 app.use(passport.initialize());
 app.use(passport.session());
 

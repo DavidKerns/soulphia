@@ -8,7 +8,6 @@ const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 router.post('/classes', (req, res, next) => {
   let newClass = new Classes ({
     teacher: req.user._id,
-    students: req.user._id,
     length: req.body.length,
     subject: req.body.subject
   });
@@ -25,15 +24,26 @@ router.get('/show', (req, res, next) => {
   Classes.find({},  (err, classes) => {
       if (err){ return next(err);}
 
-    return res.render('classes/show');
+    return res.json('classes/show');
   });
+});
+
+router.post ('/classes/:id/add', ensureLoggedIn('/'), (req, res, next) => {
+  Classes.findByIdAndUpdate(req.params.id,
+    { $push: {student: student._id}},
+     (err, classes) => {
+    if (err){ return next(err);}
+
+  return res.json(classes);
+  });
+  // return.status(200).json(student._id);
 });
 
 router.get('/:id', (req, res, next) => {
   Classes.findById(req.params.id, (err, classes) => {
     if (err){ return next(err);}
 
-  return res.render('classes/show', {classes: classes});
+  return res.json('classes/show', {classes: classes});
 
 
   });
@@ -57,7 +67,7 @@ router.get('/:id/edit', (req, res, next) => {
   Classes.findById(req.params.id, (err, classes) => {
     if (err)       { return next(err) }
     if (!classes) { return next(new Error("404")) }
-    return res.render('classes/edit');
+    return res.json('classes/edit');
   });
 
 
@@ -73,7 +83,7 @@ router.post('/:id', (req, res, next) => {
 
 Classes.findByIdAndUpdate(req.params.id, updates, (err, classes) => {
     if (err) {
-      return res.render('classes/edit', {
+      return res.json('classes/edit', {
         classes,
         errors: classes.errors
       });
