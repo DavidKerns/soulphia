@@ -27,7 +27,7 @@ export class VideoChatComponent implements OnInit {
       trickle: false,
       stream:stream
     })
-console.log(this.targetpeer);
+
     peerx.on('signal', function(data) {
 
       console.log(JSON.stringify(data));
@@ -59,7 +59,7 @@ console.log(this.targetpeer);
   }
 
   message() {
-    this.peer.send('Hello world');
+    this.peer.send("Fuck");
   }
 
 

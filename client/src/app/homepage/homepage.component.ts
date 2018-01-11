@@ -101,7 +101,7 @@ export class HomepageComponent implements OnInit {
           this.loginErrorMessage = "";
 
           // redirect to /profile
-          this.routerThang.navigate(['/chat'], { fragment: 'init ' });
+          this.routerThang.navigate(['/profile']);
       })
       .catch((err) => {
           const parsedError = err.json();

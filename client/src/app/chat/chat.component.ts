@@ -1,35 +1,15 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-	import { FormControl } from '@angular/forms';
-import { ChatService } from './services/chat.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  moduleId: module.id,
-  selector: 'chat',
-  template: `<div *ngFor="let message of messages">
-                     {{message.text}}
-                   </div>
-                   <input [(ngModel)]="message"  /><button (click)="sendMessage()">Send</button>`,
-  providers: [ChatService]
+  selector: 'app-chat',
+  templateUrl: './chat.component.html',
+  styleUrls: ['./chat.component.css']
 })
-export class ChatComponent implements OnInit, OnDestroy {
-  messages = [];
-  connection;
-  message;
+export class ChatComponent implements OnInit {
 
-  constructor(private chatService:ChatService) {}
-
-  sendMessage(){
-    this.chatService.sendMessage(this.message);
-    this.message = '';
-  }
+  constructor() { }
 
   ngOnInit() {
-    this.connection = this.chatService.getMessages().subscribe(message => {
-      this.messages.push(message);
-    })
   }
 
-  ngOnDestroy() {
-    this.connection.unsubscribe();
-  }
 }

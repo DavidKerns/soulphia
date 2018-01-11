@@ -5,29 +5,22 @@
 <button (click)="message()">Send Message</button>
 
 <video #myvideo></video>
-<html>
-<head>
-    <title>WebRTC with SkylinkJS</title>
+<form target="paypal" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="19218">
+<table>
+<tr><td><input type="hidden" name="on0" value="Color">Color</td></tr><tr><td><select name="os0">
+<option value="Red">Donate $2.00 USD
+<option value="Blue">Donate $5.00 USD
+<option value="Green">Donate $10.00 USD
+</select> </td></tr>
+</table><br>
+<input type="hidden" name="currency_code" value="USD">
+<!-- Display the payment button. -->
+<input type="image" name="submit" class="donate-btn"
+src="https://www.paypalobjects.com/webstatic/en_US/i/btn/png/btn_donate_92x26.png"
+alt="Donate">
+<img alt="" width="1" height="1"
+src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >
 
-    <script src="//cdn.temasys.com.sg/skylink/skylinkjs/0.6.x/skylink.complete.min.js"></script>
-</head>
-<body>
-
-  <header>
-
-    <input type="text" id="name" placeholder="My name" autofocus />
-    <button onclick="setName()">Set my name</button>
-    <button onclick="joinRoom()">Join room</button>
-    <button onclick="leaveRoom()">Leave room</button>
-    <br/>
-    <input type="text" id="message" placeholder="My message" />
-    <button onclick="sendMessage()">Send message</button>
-    <a target="_blank">Open a new tab to chat with yourself</a>
-  </header>
-
-  <div id="container">
-    <div id="chatbox"></div>
-  </div>
-
-</body>
-</html>
+</form>

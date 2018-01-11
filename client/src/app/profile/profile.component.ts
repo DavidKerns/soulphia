@@ -13,18 +13,30 @@ import 'rxjs/add/operator/takeUntil';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnDestroy {
   profile;
   data: any;
+  userData: any;
+  destroyed$ = new Subject<void>();
   constructor(private userService: UserService, private router: Router, private activatedRouter: ActivatedRoute, private authThang: AuthService,
   private routerThang: Router) { }
 
   ngOnInit() {
-    this.profile.getProfile()
-        .subscribe((profile) => {
-          this.data = profile;
-        });
+    this.getUsers();
     }
+    ngOnDestroy(): void {
+      this.destroyed$.next();
+      this.destroyed$.complete();
+
+    }
+    getUsers () {
+      this.userService.allUser()
+      .takeUntil(this.destroyed$)
+      .subscribe((user) => {
+        console.log(user);
+        this.userData = user;
+      }
+    )}
     logMeOutPls() {
     this.authThang.logout()
       .then(() => {

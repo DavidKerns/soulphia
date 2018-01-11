@@ -7,7 +7,6 @@ import { FormsModule } from '@angular/forms';
 import { AuthService } from './services/auth.service';
 import { ClassesService } from './services/classes.service';
 import { UserService } from './services/user.service';
-import { ChatService } from './services/chat.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -47,7 +46,8 @@ import { ChatComponent } from './chat/chat.component';
   providers: [
     AuthService,
     ClassesService,
-    UserService
+    UserService,
+
 
   ],
   bootstrap: [AppComponent]
