@@ -16,7 +16,7 @@ const userSchema = new Schema({
     type: String,
     required: [true, 'password is required']
   },
-  position   : String,
+  personal   : String,
   image: {
     type: String, default: ''
   },
@@ -32,7 +32,12 @@ const userSchema = new Schema({
      "default": 'guest',
       required: true
      },
+     language: { type: String, required: true },
+     bigThing: {
+       type: String
+     }
   });
+
 
 const User = mongoose.model('User', userSchema);
 module.exports = User;

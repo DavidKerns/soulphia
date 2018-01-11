@@ -1,6 +1,12 @@
 module.exports = [
-'conversation',
-'grammer',
-'pronunciation',
-'vocabulary'
+'ENGLISH',
+'SPANISH',
+'PROTUGESE',
+'MANDARIN',
+'JAPANESE',
+'FRENCH',
+'GERMAN',
+'RUSSIAN',
+'ARABIC',
+'HINDI',
 ];

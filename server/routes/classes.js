@@ -7,7 +7,7 @@ const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 
 router.post('/classes', (req, res, next) => {
   let newClass = new Classes ({
-    teacher: req.user._id,
+    teacher: req.role,
     length: req.body.length,
     subject: req.body.subject
   });

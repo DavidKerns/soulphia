@@ -5,12 +5,13 @@ const ROLES    = require('../models/role-types');
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 
 
-router.post('/register', (req, res, next) => {
+router.post('/signup', (req, res, next) => {
   let newUser = new User ({
     username: req.body.username,
     password: req.body.password,
     email: req.body.email,
-    role: req.body.role
+    role: req.body.role,
+    language: req.body.language
   });
   User.addUser(newUser, (err, user) => {
     if (err){
@@ -28,16 +29,19 @@ router.get('/show', (req, res, next) => {
     (err, users) => {
       if (err){ return next(err);}
 
-    return res.json('users/profile');
+     res.json(users);
   });
 });
 
 router.get('/:id', (req, res, next) => {
-  User.findById(req.params.id, (err, users) => {
-    if (err){ return next(err);}
-  return res.json('users/show', {users: users});
+  User.findById(req.params.id, (err, user) =>{
+      if (err){ return next(err);}
 
-});
+     res.json(user);
+   });
+
+
+
 });
 
 router.get('/:id/edit', (req, res, next) => {
@@ -47,31 +51,35 @@ router.get('/:id/edit', (req, res, next) => {
     return res.json('users/edit', { users, types: ROLES});
   });
 });
+
 router.post('/:id', (req, res, next) => {
+  console.log('starts');
   const updates = {
     username: req.body.username,
-    password: req.body.password,
     email: req.body.email,
+    language: req.body.language,
     role: req.body.role
   };
-
-User.findByIdAndUpdate(req.params.id, updates, (err, users) => {
+console.log(updates);
+User.findByIdAndUpdate(req.params.id, updates, (err) => {
     if (err) {
-      return res.json('users/edit', {
-        errors: users.errors
-      });
+      return res.json(err);
+
     }
-    return res.redirect(`/users/${users._id}`);
+    return res.json({
+      message: `'hello world ID =', ${updates.username}`,
+    });
   });
   });
 
 
-router.post('/:id/delete', (req, res, next) => {
+router.delete('/:id/delete', (req, res, next) => {
   const id = req.params.id;
 
   User.findByIdAndRemove(id, (err, users) => {
     if (err){ return next(err); }
-    return res.redirect('/');
+    return res.json();
+
   });
   });
 

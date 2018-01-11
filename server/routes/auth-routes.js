@@ -3,11 +3,12 @@ const bcrypt = require('bcrypt');
 const User = require('../models/user');
 const userRouter  = express.Router();
 
-userRouter.post('/signup', (req, res, next) =>{
+userRouter.post('/api/signup', (req, res, next) =>{
   console.log("INFO = ", req.body);
   const username = req.body.username;
   const password = req.body.password;
   const email = req.body.email;
+  const language = req.body.language;
 
   if (!username || !password) {
     res.status(400).json({message: 'Provide Username and Password'});
@@ -26,7 +27,8 @@ userRouter.post('/signup', (req, res, next) =>{
     const theUser = new User ({
       username: username,
       password: hashPass,
-      email: email
+      email: email,
+      language: language
     });
     theUser.save((err) =>{
       if (err){
@@ -45,11 +47,13 @@ userRouter.post('/signup', (req, res, next) =>{
   });
 });
 
-userRouter.post('/login', (req, res, next) =>{
-  const username = req.body.username;
+userRouter.post('/api/login', (req, res, next) =>{
+  const username = req.body.email;
   const password = req.body.password;
+  console.log('Username = ', req.body);
 
-  User.findOne({username: username}, (err, foundUser) => {
+  User.findOne({email: username}, (err, foundUser) => {
+    console.log("USER NAME FROM DB = ", foundUser);
     if (!foundUser) {
         res.status(400).json({message: "Incorrect Username"});
         return;
@@ -68,12 +72,12 @@ userRouter.post('/login', (req, res, next) =>{
   });
 });
 
-userRouter.post('/logout', (req, res, next) => {
+userRouter.post('/api/logout', (req, res, next) => {
   req.logout();
   res.status(200).json({ message: 'Success' });
 });
 
-userRouter.get('/loggedin', (req, res, next) => {
+userRouter.get('/api/checklogin', (req, res, next) => {
   if (req.isAuthenticated()) {
     res.status(200).json(req.user);
     return;
@@ -81,7 +85,7 @@ userRouter.get('/loggedin', (req, res, next) => {
 
   res.status(403).json({ message: 'Unauthorized' });
 });
-userRouter.get('/private', (req, res, next) => {
+userRouter.get('/api/private', (req, res, next) => {
   if (req.isAuthenticated()) {
     res.json({ message: 'This is a private message' });
     return;
