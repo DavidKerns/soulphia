@@ -1,0 +1,30 @@
+<div *ngIf = 'userData'>
+  <form (ngSubmit) = "saveUpdatedUser(updateUser)" #updateUser = "ngForm">
+
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" name="username" class="form-control" [(ngModel)]=userData.username>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="text" name="email" class="form-control" [(ngModel)]=userData.email>
+        </div>
+        <div class="form-group">
+          <label for="role">role</label>
+          <input type="text" name="role" class="form-control" [(ngModel)]=userData.role>
+        </div>
+        <div class="form-group">
+            <select [(ngModel)]= "signUpInfo.language" name="language">
+                <option *ngFor="let language of languageArray">{{language}}</option>
+            </select>
+        </div>
+
+
+        <button [routerLink]=" ['/userrole'] " (click)="saveUpdatedUser(updateUser)" type="submit" name="button">Update</button>
+
+
+  </form><br>
+  <form (ngSubmit) = "remove(id)" #deleteUser = "ngForm">
+  <button  (click)="remove(id)" type="submit" name="button" [routerLink]=" ['/userrole'] ">Delete User</button>
+</form>
+</div>

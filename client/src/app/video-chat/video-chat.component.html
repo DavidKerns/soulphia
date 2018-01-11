@@ -1,0 +1,33 @@
+
+
+<input type="text" [(ngModel)]="targetpeer">
+<button (click)="connect()">Connect</button>
+<button (click)="message()">Send Message</button>
+
+<video #myvideo></video>
+<html>
+<head>
+    <title>WebRTC with SkylinkJS</title>
+
+    <script src="//cdn.temasys.com.sg/skylink/skylinkjs/0.6.x/skylink.complete.min.js"></script>
+</head>
+<body>
+
+  <header>
+
+    <input type="text" id="name" placeholder="My name" autofocus />
+    <button onclick="setName()">Set my name</button>
+    <button onclick="joinRoom()">Join room</button>
+    <button onclick="leaveRoom()">Leave room</button>
+    <br/>
+    <input type="text" id="message" placeholder="My message" />
+    <button onclick="sendMessage()">Send message</button>
+    <a target="_blank">Open a new tab to chat with yourself</a>
+  </header>
+
+  <div id="container">
+    <div id="chatbox"></div>
+  </div>
+
+</body>
+</html>
