@@ -12,16 +12,10 @@ import { UserService } from '../services/user.service';
   styleUrls: ['./user-role.component.css']
 })
 export class UserRoleComponent implements OnInit, OnDestroy {
-  // user: object = {
-  //   id: 0,
-  //   username: '',
-  //   email: '',
-  //   password: '',
-  //   role: '',
-  // };
+
   users;
   data: any;
- userData: any;
+ usersData: any;
  destroyed$ = new Subject<void>();
   constructor( private userService: UserService, private router: Router) { }
 
@@ -41,7 +35,7 @@ export class UserRoleComponent implements OnInit, OnDestroy {
     .takeUntil(this.destroyed$)
     .subscribe((user) => {
       console.log(user);
-      this.userData = user;
+      this.usersData = user;
     }
   )}
 

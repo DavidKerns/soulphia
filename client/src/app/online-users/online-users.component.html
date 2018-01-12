@@ -1,0 +1,25 @@
+<div class="container">
+  <hr>
+  <br>
+  <app-navbar></app-navbar>
+	<div class="row"><h1>Users Online</h1>
+    <div class="col-md-12">
+      <div class="table-responsive">
+          <table id="mytable" class="table table-bordred table-striped">
+            <thead>
+              <th>Username</th>
+              <th>Language</th>
+            </thead>
+            <br>
+            <tbody>
+              <tr *ngFor="let users of userData">
+                <a [routerLink]="['/chat']"  (click)="saveUpdatedUser(updateUser)" type="submit" name="button">{{users.username}}</a>
+                <td>{{ users.language }}</td>
+                <td><p data-placement="top" data-toggle="tooltip" title="Edit"></p></td>
+              </tr>
+            </tbody>
+          </table>
+
+    </div>
+	</div>
+</div>

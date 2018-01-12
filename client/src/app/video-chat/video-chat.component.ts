@@ -16,12 +16,12 @@ export class VideoChatComponent implements OnInit {
   peer: any;
   n = <any>navigator;
 
-
   ngOnInit() {
     let video = this.myVideo.nativeElement;
     let peerx: any;
     this.n.getUserMedia = (this.n.getUserMedia || this.n.webkitGetUserMedia || this.n.mozGetUserMedia || this.n.msGetUserMedia);
     this.n.getUserMedia({video:true, audio:true}, function(stream) {
+      console.log(location,'adadsasdasd')
     peerx = new SimplePeer ({
       initiator: location.hash === '#init',
       trickle: false,
@@ -29,7 +29,6 @@ export class VideoChatComponent implements OnInit {
     })
 
     peerx.on('signal', function(data) {
-
       console.log(JSON.stringify(data));
 
       this.targetpeer = data;
@@ -59,8 +58,7 @@ export class VideoChatComponent implements OnInit {
   }
 
   message() {
-    this.peer.send("Fuck");
+    this.peer.send('Hello world');
   }
-
 
 }

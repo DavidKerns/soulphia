@@ -1,8 +1,11 @@
 <body>
-  <div *ngIf="isLoggedOut">
-  <h2> Welcome To Soulphia </h2>
 
-  <p> THE WORLD IS CHANGING <br> YOU WILL BE PART OF IT?<p>
+  <div *ngIf="isLoggedOut">
+    <div class="container">
+    <div class="row">
+  <h2 class="col title"> Welcome To LearnToTalk </h2>
+
+  <p class="col heading"> THE WORLD IS CHANGING <br> YOU WILL BE PART OF IT?<p>
 
   <h3> Sign Up </h3>
 
@@ -28,7 +31,7 @@
  <div>
   <label>Spoken Language</label>
   <div>
-      <select [(ngModel)]= "signUpInfo.language" name="language">
+      <select [(ngModel)]= "signUpInfo.language" name="language" class="dropdown">
           <option *ngFor="let language of languageArray">{{language}}</option>
       </select>
   </div>
@@ -62,5 +65,7 @@
 
     <button> Log In </button>
   </form>
+  </div>
+  </div>
 </div>
 </body>

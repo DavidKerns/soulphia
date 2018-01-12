@@ -9,6 +9,7 @@ import { environment } from '../../environments/environment';
 @Injectable()
 export class UserService {
   userUrl: string = 'http://localhost:3000/user'
+    profileUrl: string = 'http://localhost:3000/profile'
 
   constructor(
     private httpThang: Http
@@ -30,7 +31,14 @@ export class UserService {
         // Parse the JSON
         .map(res => res.json());
   } // close newUser()
-
+  oneUser(id): Observable<any>{
+    return this.httpThang.get(`http://localhost:3000/user/${id}`,
+                      { withCredentials: true }
+                    )
+        .map((response: Response) => {
+          return response.json();
+        })
+  }
 
 
   allUser(): Observable<any>{
@@ -51,6 +59,15 @@ export class UserService {
           })
 
 }
+editProfile(id): Observable<any>{
+    return this.httpThang.get(`http://localhost:3000/profile/${id}`,
+                      { withCredentials: true }
+                    )
+        .map((response: Response) => {
+          return response.json();
+        })
+
+}
 
 saveUpdatedUser(updates){
 
@@ -64,11 +81,19 @@ remove(id) {
                                       { withCredentials: true }
     ).map((res) => res.json());
 }
+checklogin() {
+    return this.httpThang
+      .get(
+        `${environment.apiBase}/api/checklogin`,
 
-saveUpdatedProfile(updates){
+        // Send the cookies across domains
+        { withCredentials: true }
+      )
 
-  return this.httpThang.post(`${this.userUrl}/${updates.id}`,
-                          updates,{ withCredentials: true }
-                  ).map((res) =>{ return res.json() });
-}
+      // Convert from observable to promise
+      .toPromise()
+
+      // Parse the JSON
+      .then(res => res.json());
+} // close checklogin()
 }

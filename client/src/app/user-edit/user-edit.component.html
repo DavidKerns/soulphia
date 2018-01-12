@@ -25,6 +25,6 @@
 
   </form><br>
   <form (ngSubmit) = "remove(id)" #deleteUser = "ngForm">
-  <button  (click)="remove(id)" type="submit" name="button" [routerLink]=" ['/userrole'] ">Delete User</button>
+  <button  (click)="remove(id)" type="submit" name="button" [routerLink]=" ['/userrole'] "(click)="saveUpdatedUser(updateUser)" >Delete User</button>
 </form>
 </div>

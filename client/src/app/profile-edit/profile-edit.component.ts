@@ -12,6 +12,24 @@ export class ProfileEditComponent implements OnInit {
   userId: number;
   userData: any;
   user;
+  signUpInfo = {
+    fullName: '',
+    email: '',
+    password: '',
+    language: ''
+  };
+  languageArray: any[]= [
+  'ENGLISH',
+  'SPANISH',
+  'PORTUGESE',
+  'MANDARIN',
+  'JAPANESE',
+  'FRENCH',
+  'GERMAN',
+  'RUSSIAN',
+  'ARABIC',
+  'HINDI'
+  ];
 
   constructor(private userService: UserService, private router: Router, private activatedRouter: ActivatedRoute) { }
 
@@ -23,20 +41,22 @@ export class ProfileEditComponent implements OnInit {
     });
 
   this.editUser()
+
+
   }
 
-  saveUpdatedProfile(updateProfile){
+  saveUpdatedUser(updateUser){
 
     const updates = {
       id: this.userId,
-      username: updateProfile.value.username,
-      email: updateProfile.value.email,
-      language: updateProfile.value.language,
-      personal: updateProfile.value.personal
+      username: updateUser.value.username,
+      email: updateUser.value.email,
+      language: updateUser.value.language,
 
    }
-   this.userService.saveUpdatedProfile(updates)
-   .subscribe((result) => {
+   this.userService.saveUpdatedUser(updates)
+   .subscribe((result) =>  {
+     this.userData = result;
    });
   }
 

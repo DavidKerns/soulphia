@@ -9,11 +9,11 @@ import 'rxjs/add/operator/takeUntil';
 
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  selector: 'app-online-users',
+  templateUrl: './online-users.component.html',
+  styleUrls: ['./online-users.component.css']
 })
-export class ProfileComponent implements OnInit, OnDestroy {
+export class OnlineUsersComponent implements OnInit, OnDestroy {
   profile;
   data: any;
   userData: any;
@@ -22,12 +22,21 @@ export class ProfileComponent implements OnInit, OnDestroy {
   private routerThang: Router) { }
 
   ngOnInit() {
-    this.getCurrentUser();
+    this.getUsers();
     }
     ngOnDestroy(): void {
       this.destroyed$.next();
       this.destroyed$.complete();
+
     }
+    getUsers () {
+      this.userService.allUser()
+      .takeUntil(this.destroyed$)
+      .subscribe((user) => {
+        console.log(user);
+        this.userData = user;
+      }
+    )}
     logMeOutPls() {
     this.authThang.logout()
       .then(() => {
@@ -39,17 +48,4 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
    // close logMeOutPls()s
   }
-  getCurrentUser(){
-    this.userService.checklogin()
-    .then(
-      userAPI => {
-        this.userData = userAPI;
-    })
-    .catch((err) =>{
-      console.log("BIG ERROR", err)
-    })
   }
-  editThisUser(id) {
-   this.router.navigate(['profile/', id,'edit']);
- }
-}

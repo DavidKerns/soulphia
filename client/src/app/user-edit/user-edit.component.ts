@@ -56,10 +56,21 @@ saveUpdatedUser(updateUser){
     language: updateUser.value.language,
     bigThing: updateUser.value.bigThing
  }
+
  this.userService.saveUpdatedUser(updates)
- .subscribe((result) => {
- });
-}
+ .subscribe((result) =>  {
+   this.userData = result;
+ }
+)}
+
+// getUsers () {
+//   this.userService.allUser()
+//   .takeUntil(this.destroyed$)
+//   .subscribe((user) => {
+//     console.log(user);
+//     this.usersData = user;
+//   }
+// )}
 
   editUser(){
     this.userService.editUser(this.userId)

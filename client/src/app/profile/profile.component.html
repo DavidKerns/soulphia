@@ -1,7 +1,31 @@
+<nav class="navbar navbar-dark bg-inverse">
+    <div class="container">
+        <ul class="nav navbar-nav" routerLinkActive="active">
+            <li class="nav-item"><a class="nav-link" [routerLink]="['/profile']" >Home</a></li>
+            <li class="nav-item"><a class="nav-link" [routerLink]="['/chat']" >Chat Room</a></li>
+            <li class="nav-item"><a class="nav-link" [routerLink]="['/availableusers']" >Find someone to talk to</a></li>
+            <li class="nav-item"><a class="nav-link" [routerLink]="['/']"  (click)="logMeOutPls()">Logout</a></li>
+        </ul>
+    </div>
+</nav>
+
+<section id="page_header">
+<div class="page_title">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+         <h2 class="title">User Details</h2>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+
 <div class="container">
   <hr>
   <br>
-	<div class="row"><h1>Users Online</h1>
+	<div class="row">
     <div class="col-md-12">
       <div class="table-responsive">
           <table id="mytable" class="table table-bordred table-striped">
@@ -11,15 +35,14 @@
             </thead>
             <br>
             <tbody>
-              <tr *ngFor="let users of userData">
-                <a [routerLink]="['/chat']" fragment="init" (click)="saveUpdatedUser(updateUser)" type="submit" name="button">{{users.username}}</a>
-                <td>{{ users.language }}</td>
-                <td><p data-placement="top" data-toggle="tooltip" title="Edit"></p></td>
+              <tr>
+                <td>{{ userData.username }}</td>
+                <td>{{ userData.language }}</td>
+                <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button (click)="editThisUser(userData._id)" class="btn btn-primary btn-xs" data-title="Edit"><span class="glyphicon glyphicon-pencil"></span></button></p></td>
               </tr>
             </tbody>
           </table>
-          <div class="skype-button bubble" data-bot-id="YOUR_BOT_ID"></div>
-<script src="https://swc.cdn.skype.com/sdk/v1/sdk.min.js"></script>
+
     </div>
 	</div>
 </div>

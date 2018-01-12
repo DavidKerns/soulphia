@@ -1,3 +1,10 @@
-<p>
-  navbar works!
-</p>
+<nav class="navbar navbar-dark bg-inverse">
+    <div class="container">
+        <ul class="nav navbar-nav" routerLinkActive="active">
+            <li class="nav-item"><a class="nav-link" [routerLink]="['/profile']" >Home</a></li>
+            <li class="nav-item"><a class="nav-link" [routerLink]="['/chat']" >Chat Room</a></li>
+            <li class="nav-item"><a class="nav-link" [routerLink]="['/availableusers']" >Find someone to talk to</a></li>
+            <li class="nav-item"><a class="nav-link" [routerLink]="['/']"  (click)="logMeOutPls()">Logout</a></li>
+        </ul>
+    </div>
+</nav>
