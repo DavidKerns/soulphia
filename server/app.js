@@ -14,17 +14,39 @@ var session = require('express-session');
 var authRoutes = require('./routes/auth-routes');
 var userRoute = require('./routes/user');
 var classRoutes = require('./routes/classes');
-
+var socket = require('socket.io');
 require('./configs/database');
 require('./configs/multer');
 require('./configs/passport');
 
+
 mongoose.connect(process.env.MONGODB_URI);
+
 var app = express();
 app.use(cors({
   credentials:true,
   origin: ['http://localhost:4200']
 }));
+
+//Socket Conection
+var io = socket(process.env.MONGODB_URI);
+io.on('connection', (socket) => {
+
+    console.log('made socket connection', socket.id);
+
+    // Handle chat event
+    socket.on('chat', function(data){
+        // console.log(data);
+        io.sockets.emit('chat', data);
+    });
+
+    // Handle typing event
+    socket.on('typing', function(data){
+        socket.broadcast.emit('typing', data);
+    });
+
+});
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -54,6 +76,10 @@ app.use(passport.session());
 app.use('/', authRoutes);
 app.use('/user', userRoute);
 app.use('/classes', classRoutes);
+
+
+
+
 
 
 // catch 404 and forward to error handler

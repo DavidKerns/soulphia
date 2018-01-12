@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-const SUBJECT    = require('../models/class-types');
+const SUBJECT    = require('../models/language-types');
 const Classes = require('../models/classes');
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
 

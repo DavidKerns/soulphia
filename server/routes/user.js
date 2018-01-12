@@ -58,16 +58,16 @@ router.post('/:id', (req, res, next) => {
     username: req.body.username,
     email: req.body.email,
     language: req.body.language,
-    role: req.body.role
+    role: req.body.role,
+    bigThing:req.body.bigThing
   };
-console.log(updates);
-User.findByIdAndUpdate(req.params.id, updates, (err) => {
+User.findByIdAndUpdate(req.params.id, updates, {new: true}, (err, user) => {
     if (err) {
       return res.json(err);
 
     }
     return res.json({
-      message: `'hello world ID =', ${updates.username}`,
+      user
     });
   });
   });

@@ -1,19 +1,11 @@
-let app = require('express')();
-let http = require('http').Server(app);
-let io = require('socket.io')(http);
+const express = require('express');
+const router = express.Router();
+const Application = require('../models/application');
 
-io.on('connection', (socket) => {
-  console.log('user connected');
 
-  socket.on('disconnect', function(){
-    console.log('user disconnected');
+router.post('/chat', (req, res, next) => {
+  let newToken = new Token ({
+    bigToken: req.body.bigToken
+
   });
-
-  socket.on('add-message', (message) => {
-    io.emit('message', {type:'new-message', text: message});
   });
-});
-
-http.listen(3000, () => {
-  console.log('started on port 3000');
-});
