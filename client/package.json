@@ -46,6 +46,7 @@
     "@types/socket.io-client": "^1.4.29",
     "codelyzer": "~3.2.0",
     "del": "^2.2.2",
+    "enhanced-resolve": "3.3.0",
     "gulp": "^3.9.1",
     "jasmine-core": "~2.6.2",
     "jasmine-spec-reporter": "~4.1.0",

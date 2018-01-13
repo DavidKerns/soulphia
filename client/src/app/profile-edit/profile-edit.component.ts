@@ -17,7 +17,7 @@ export class ProfileEditComponent implements OnInit {
     email: '',
     password: '',
     language: ''
-  };
+  }; 
   languageArray: any[]= [
   'ENGLISH',
   'SPANISH',
