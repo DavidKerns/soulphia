@@ -29,10 +29,12 @@
         [(ngModel)]="signUpInfo.password" name="passwordValue">
     <br>
  <div>
-  <label>Spoken Language</label>
+  <label>Select Language</label>
   <div>
       <select [(ngModel)]= "signUpInfo.language" name="language" class="dropdown">
+        <option>Select Language</option>
           <option *ngFor="let language of languageArray">{{language}}</option>
+
       </select>
   </div>
 </div>
