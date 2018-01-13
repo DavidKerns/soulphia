@@ -10,10 +10,12 @@ var passport = require('passport');
 var multer = require('multer');
 var bcrypt = require('bcrypt');
 var cors = require('cors');
+var http = require('http');
 var session = require('express-session');
 var authRoutes = require('./routes/auth-routes');
 var userRoute = require('./routes/user');
 var classRoutes = require('./routes/classes');
+var chatRoutes = require('./routes/chat');
 var socket = require('socket.io');
 require('./configs/database');
 require('./configs/multer');
@@ -29,23 +31,7 @@ app.use(cors({
 }));
 
 //Socket Conection
-var io = socket(process.env.MONGODB_URI);
-io.on('connection', (socket) => {
 
-    console.log('made socket connection', socket.id);
-
-    // Handle chat event
-    socket.on('chat', function(data){
-        // console.log(data);
-        io.sockets.emit('chat', data);
-    });
-
-    // Handle typing event
-    socket.on('typing', function(data){
-        socket.broadcast.emit('typing', data);
-    });
-
-});
 
 
 // view engine setup
@@ -76,6 +62,7 @@ app.use(passport.session());
 app.use('/', authRoutes);
 app.use('/user', userRoute);
 app.use('/classes', classRoutes);
+app.use('/chat', chatRoutes);
 
 
 
