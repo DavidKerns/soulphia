@@ -7,7 +7,6 @@ import { FormsModule } from '@angular/forms';
 
 
 import { AuthService } from './services/auth.service';
-import { ClassesService } from './services/classes.service';
 import { UserService } from './services/user.service';
 import { ChatService } from './services/chat.service';
 
@@ -52,7 +51,6 @@ import { MessagesComponent } from './messages/messages.component';
   ],
   providers: [
     AuthService,
-    ClassesService,
     UserService,
 		ChatService
 
