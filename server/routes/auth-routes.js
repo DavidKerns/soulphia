@@ -4,7 +4,6 @@ const User = require('../models/user');
 const userRouter  = express.Router();
 
 userRouter.post('/api/signup', (req, res, next) =>{
-  console.log("INFO = ", req.body);
   const username = req.body.username;
   const password = req.body.password;
   const email = req.body.email;
