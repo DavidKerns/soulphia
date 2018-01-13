@@ -57,8 +57,4 @@ export class VideoChatComponent implements OnInit {
     this.peer.signal(JSON.parse(this.targetpeer));
   }
 
-  message() {
-    this.peer.send('Hello world');
-  }
-
 }

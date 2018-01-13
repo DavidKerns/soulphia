@@ -55,7 +55,7 @@ export class ProfileEditComponent implements OnInit {
 
    }
    this.userService.saveUpdatedUser(updates)
-   .subscribe((result) =>  {
+   .subscribe((result) => {
      this.userData = result;
    });
   }

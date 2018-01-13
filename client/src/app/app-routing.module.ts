@@ -10,6 +10,7 @@ import { UserEditComponent } from './user-edit/user-edit.component';
 import { ProfileEditComponent } from './profile-edit/profile-edit.component';
 import { ChatComponent } from './chat/chat.component';
 import { OnlineUsersComponent } from './online-users/online-users.component';
+import { MessagesComponent } from './messages/messages.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,10 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent
+  },
+  {
+    path: 'messages',
+    component: MessagesComponent
   },
   {
     path: 'availableusers',

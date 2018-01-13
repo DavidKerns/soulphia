@@ -1,0 +1,103 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="panel panel-primary" *ngIf="joinned; else joinroom">
+                <div class="panel-heading" >
+                    <div class="btn-group pull-right">
+                    </div>
+                </div>
+                <div #scrollMe class="panel-body">
+                    <ul class="chat">
+                        <li *ngFor="let c of chats">
+                          <div class="right clearfix" *ngIf="c.nickname===msgData.nickname; else leftchat">
+                            <span class="chat-img pull-right">
+                              <img class="icon" style="max-width: 45px;" src="https://maxcdn.icons8.com/Share/icon/nolan/Programming//source_code1600.png" alt="User Avatar" class="img-circle" />
+                            </span>
+                            <div class="chat-body clearfix">
+                                <div class="header">
+                                    <strong class="primary-font pull-right">{{ c.nickname }}</strong> <small class="pull-right text-muted">
+                                        <span class="glyphicon glyphicon-time"></span>{{ c.updated_at | date: 'medium' }}</small>
+                                </div> <br>
+                                <p class="pull-right">{{ c.message }}</p>
+                            </div>
+                          </div>
+                          <ng-template #leftchat>
+                            <div class="left clearfix">
+                              <span class="chat-img pull-left">
+                                <img  class="icon" style="max-width: 45px;" src="https://maxcdn.icons8.com/Share/icon/nolan/Programming//source_code1600.png" alt="User Avatar" class="img-circle" />
+                              </span>
+                              <div class="chat-body clearfix">
+                                  <div class="header">
+                                      <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>{{ c.updated_at | date: 'medium' }}</small>
+                                      <strong class="pull-left primary-font">{{ c.nickname }}</strong>
+                                  </div>
+                                  <p>{{ c.message }}</p>
+                              </div>
+                            </div>
+                          </ng-template>
+                        </li>
+                    </ul>
+                </div>
+                <div class="panel-footer">
+                  <form (ngSubmit)="sendMessage()" #msgForm="ngForm">
+                    <div class="input-group">
+                        <input type="hidden" [(ngModel)]="msgData.room" name="room" />
+                        <input type="hidden" [(ngModel)]="msgData.nickname" name="nickname" />
+                        <input id="btn-input" type="text" [(ngModel)]="msgData.message" name="message" class="form-control input-sm" placeholder="Type your message here..." required="" />
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" id="btn-chat" [disabled]="!msgForm.form.valid">
+                                Send</button>
+                        </span>
+                        <button type="button" class="btn btn-secondary" style="margin-left: 20px;" (click)="logout()">
+                            Logout
+                        </button>
+                    </div>
+                  </form>
+                </div>
+            </div>
+            <ng-template #joinroom>
+              <div class="panel panel-primary">
+                <div class="panel-body">
+                    <h1>< Choose your Chatroom <span class="blink">_</span> /></h1>
+                  <form (ngSubmit)="joinRoom()" #joinForm="ngForm">
+                    <div class="form-group">
+                      <select class="form-control" [(ngModel)]="newUser.room" name="room" required="">
+                        <option>Select your Class</option>
+                        <option value="Javascript">Web Development</option>
+                        <option value="#">UX/UI Design</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <select class="form-control" [(ngModel)]="newUser.nickname" name="nickname" required="">
+                        <option>Select User</option>
+                        <option>Dianelis Insua</option>
+                        <option>Colby Allen</option>
+                        <option>Aleksandra Boskovic</option>
+                        <option>Jessica Palacios</option>
+                        <option>Alice Guan</option>
+                        <option>Maria Pottage</option>
+                        <option>Adel Acebal</option>
+                        <option>Artsiom Yabkevich</option>
+                        <option>Gustavo Gutierrez</option>
+                        <option>Orestes Garcia</option>
+                        <option>Sebastian Duque</option>
+                        <option>Ernesto Quesada</option>
+                        <option>Wadson Fleurigene</option>
+                        <option>Miguel Maldonado</option>
+                        <option>Ivan Paifer</option>
+                        <option>Sherwin Garcia</option>
+                        <option>Alejandro Jimenez</option>
+                        <option>Satish Sambandham</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <button type="submit" class="btn btn-primary" [disabled]="!joinForm.form.valid">Join</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </ng-template>
+        </div>
+    </div>
+</div>
+<video-chat></video-chat>
