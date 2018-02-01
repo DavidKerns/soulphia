@@ -1,8 +1,11 @@
 
-
+<div class="container">
+  <div class="row">
 <input type="text" [(ngModel)]="targetpeer">
-<button (click)="connect()">Connect</button>
+<button class="btn btn-default orange-circle-button" (click)="connect()">Connect</button>
 
 
 <video #myvideo></video>
-<button [routerLink]="['/messages']" fragment="init">Initialize chat</button>
+<button class="btn btn-default orange-circle-button" [routerLink]="['/messages']" fragment="init">Initialize chat<span class="orange-circle-greater-than"></span></button>
+  </div>
+</div>

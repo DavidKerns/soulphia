@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewChecked, ElementRef, ViewChild } from '@angular/core';
 import { ChatService } from '../services/chat.service';
+import { environment } from '../../environments/environment';
 import * as io from "socket.io-client";
 
 @Component({
@@ -14,7 +15,7 @@ export class MessagesComponent implements OnInit, AfterViewChecked {
   joinned: boolean = false;
   newUser = { nickname: '', room: '' };
   msgData = { room: '', nickname: '', message: '' };
-  socket = io('http://localhost:4000');
+  socket = io(environment.socketBase);
 
   constructor(private chatService: ChatService) {}
 

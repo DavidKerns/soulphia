@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { HomepageComponent } from './homepage/homepage.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { ClassesComponent } from './classes/classes.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UserRoleComponent } from './user-role/user-role.component';
 import { UserEditComponent } from './user-edit/user-edit.component';
@@ -36,10 +35,6 @@ const routes: Routes = [
   {
     path: 'user/:id/edit',
     component: UserEditComponent
-  },
-  {
-    path: 'classes',
-    component: ClassesComponent
   },
   {
     path: 'chat',

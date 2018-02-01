@@ -12,7 +12,7 @@ export class ChatService {
   getChatByRoom(room) {
     console.log(room)
     return new Promise((resolve, reject) => {
-      this.http.get('http://localhost:3000/chat/' + room)
+      this.http.get(`${environment.apiBase}/chat/${room}`)
         .map(res => res.json())
         .subscribe(res => {
           resolve(res);
@@ -24,7 +24,7 @@ export class ChatService {
 
   saveChat(data) {
     return new Promise((resolve, reject) => {
-        this.http.post('http://localhost:3000/chat', data)
+        this.http.post(`${environment.apiBase}/chat`, data)
           .map(res => res.json())
           .subscribe(res => {
             resolve(res);

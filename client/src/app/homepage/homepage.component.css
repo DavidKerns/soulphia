@@ -1,27 +1,72 @@
-/*
+#worldHands{
+	max-width: 100%;
+	max-height: 10%;
+	margin-top: 3%;
+}
+body{
+	background: #076585;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #fff, #076585);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #fff, #076585); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
+}
 .heading {text-align: center;
 	font-size: 2.3em;
 	line-height: 200%;
+  border: 2px solid white;
+  border-radius: 5px;
+  background-color: white;
+  color: #FE5B35;
+	box-shadow: 10px 10px 5px grey;
+}
+.dropdown {
+  background-color: white;
+  color: #FE5B35
 }
 
 .title{
 	text-align: center;
 	font-size: 4.0em;
-	margin-bottom: 10%;
-	color: white;
+	margin-bottom: 3%;
+	color: #FE5B35;
 	border: 3px solid white;
+  border-radius: 5px;
+  background-color: white;
+	box-shadow: 10px 10px 5px grey;
 }
 
-body{
-	background-image: url('https://www.popsci.com/sites/popsci.com/files/styles/1000_1x_/public/images/2016/04/spacestationmediterranean.jpg?itok=MAOGU-9h');
-	background-size: cover;
-	color: white;
+
+.signup{
+  border: 1px solid white;
+  border-radius: 5px;
+  background-color: #FE5B35;
+  color: white;
+  position:relative;
+  left:35%;
+
+
+
+}
+label{
+  padding: 2%;
 }
 
-button{
-	background-color: #4E4E4E;
+h3{
+  color: white;
+  text-align: center;
 }
-.dropdown{
-	background-color: #4E4E4E;
-} */
+
+button {
+  background-color: white;
+  color: #FE5B35
+}
+.login {
+  position: relative;
+  height:100%;
+  width: 100%;
+  margin-bottom: 10%;
+
+}
+
+input{
+	color: black;
+}

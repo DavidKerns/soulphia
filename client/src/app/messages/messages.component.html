@@ -11,9 +11,7 @@
                     <ul class="chat">
                         <li *ngFor="let c of chats">
                           <div class="right clearfix" *ngIf="c.nickname===msgData.nickname; else leftchat">
-                            <span class="chat-img pull-right">
-                              <img class="icon" style="max-width: 45px;" src="https://maxcdn.icons8.com/Share/icon/nolan/Programming//source_code1600.png" alt="User Avatar" class="img-circle" />
-                            </span>
+
                             <div class="chat-body clearfix">
                                 <div class="header">
                                     <strong class="primary-font pull-right">{{ c.nickname }}</strong> <small class="pull-right text-muted">
@@ -24,9 +22,7 @@
                           </div>
                           <ng-template #leftchat>
                             <div class="left clearfix">
-                              <span class="chat-img pull-left">
-                                <img  class="icon" style="max-width: 45px;" src="https://maxcdn.icons8.com/Share/icon/nolan/Programming//source_code1600.png" alt="User Avatar" class="img-circle" />
-                              </span>
+
                               <div class="chat-body clearfix">
                                   <div class="header">
                                       <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>{{ c.updated_at | date: 'medium' }}</small>
@@ -46,7 +42,7 @@
                         <input type="hidden" [(ngModel)]="msgData.nickname" name="nickname" />
                         <input id="btn-input" type="text" [(ngModel)]="msgData.message" name="message" class="form-control input-sm" placeholder="Type your message here..." required="" />
                         <span class="input-group-btn">
-                            <button class="btn btn-primary" id="btn-chat" [disabled]="!msgForm.form.valid">
+                            <button class="btn btn-primary" id="btn-chat" [disabled]="!msgForm.form.valid" >
                                 Send</button>
                         </span>
                         <button type="button" class="btn btn-secondary" style="margin-left: 20px;" (click)="logout()">
@@ -80,15 +76,15 @@
                     <div class="form-group">
                       <select class="form-control" [(ngModel)]="newUser.nickname" name="nickname" required="">
                         <option>Select Username</option>
-                        <option>Dianelis Insua</option>
-                        <option>Colby Allen</option>
-                        <option>Aleksandra Boskovic</option>
-                        <option>Jessica Palacios</option>
-                        <option>Alice Guan</option>
-                        <option>Maria Pottage</option>
-                        <option>Adel Acebal</option>
-                        <option>Artsiom Yabkevich</option>
-                        <option>Gustavo Gutierrez</option>
+                        <option>David Kerns</option>
+                        <option>Dean	Diaz</option>
+                        <option>Vicky	Cobb</option>
+                        <option>Liana Simms</option>
+                        <option>Pamela	Hernandez</option>
+                        <option>Justin	Watson</option>
+                        <option>Nick Navarro</option>
+                        <option>Manuel </option>
+                        <option>Satoshi Nakamoto</option>
                         <option>Orestes Garcia</option>
 
                       </select>

@@ -8,8 +8,8 @@ import { environment } from '../../environments/environment';
 
 @Injectable()
 export class UserService {
-  userUrl: string = 'http://localhost:3000/user'
-    profileUrl: string = 'http://localhost:3000/profile'
+  userUrl: string = `${environment.apiBase}/user`;
+    profileUrl: string = `${environment.apiBase}/profile`;
 
   constructor(
     private httpThang: Http
@@ -32,7 +32,7 @@ export class UserService {
         .map(res => res.json());
   } // close newUser()
   oneUser(id): Observable<any>{
-    return this.httpThang.get(`http://localhost:3000/user/${id}`,
+    return this.httpThang.get(`${environment.apiBase}/user/${id}`,
                       { withCredentials: true }
                     )
         .map((response: Response) => {
@@ -42,7 +42,7 @@ export class UserService {
 
 
   allUser(): Observable<any>{
-    return this.httpThang.get('http://localhost:3000/user/show',
+    return this.httpThang.get(`${environment.apiBase}/user/show`,
                       { withCredentials: true }
                     )
         .map((response: Response) => {
@@ -51,7 +51,7 @@ export class UserService {
   }
 
   editUser(id): Observable<any>{
-      return this.httpThang.get(`http://localhost:3000/user/${id}`,
+      return this.httpThang.get(`${environment.apiBase}/user/${id}`,
                         { withCredentials: true }
                       )
           .map((response: Response) => {
@@ -60,7 +60,7 @@ export class UserService {
 
 }
 editProfile(id): Observable<any>{
-    return this.httpThang.get(`http://localhost:3000/profile/${id}`,
+    return this.httpThang.get(`${environment.apiBase}/profile/${id}`,
                       { withCredentials: true }
                     )
         .map((response: Response) => {

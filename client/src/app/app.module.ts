@@ -13,7 +13,6 @@ import { ChatService } from './services/chat.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { ClassesComponent } from './classes/classes.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UserRoleComponent } from './user-role/user-role.component';
@@ -30,7 +29,6 @@ import { MessagesComponent } from './messages/messages.component';
   declarations: [
     AppComponent,
     NotFoundComponent,
-    ClassesComponent,
     HomepageComponent,
     ProfileComponent,
     UserRoleComponent,

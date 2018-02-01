@@ -1,55 +1,71 @@
 <body>
 
+
+
   <div *ngIf="isLoggedOut">
     <div class="container">
+
+
     <div class="row">
   <h2 class="col title"> Welcome To LearnToTalk </h2>
 
   <p class="col heading"> THE WORLD IS CHANGING <br> YOU WILL BE PART OF IT?<p>
+<div class="img">
+<img id="worldHands"src="./assets/World-paint.jpg">
+</div>
+    </div>
+    <div class="row">
+<div class=" col-md-12 col-sm-12">
+  <h3> Sign Up </h3><br>
+  <div class=" signup col-md-4 col-sm-12">
+    <form (ngSubmit)="doSignUp()">
+      <label for="full-name-input"> Full Name </label>
+      <input  id="full-name-input" type="text" placeholder="John Doe"
+          [(ngModel)]="signUpInfo.username" name="fullNameValue">
+      <br>
 
-  <h3> Sign Up </h3>
+      <label for="email-input"> Email </label>
+      <input  id="email-input" type="email" placeholder="Enter Email Here"
+          [(ngModel)]="signUpInfo.email" name="emailValue">
+      <br>
+
+      <label for="password-input"> Password </label>
+      <input  id="password-input" type="password" placeholder="*****"
+          [(ngModel)]="signUpInfo.password" name="passwordValue">
+      <br>
+   <div>
+    <label>Select Language</label>
+    <div>
+        <select [(ngModel)]= "signUpInfo.language" name="language" class="dropdown">
+          <option>Select Language</option>
+            <option *ngFor="let language of languageArray">{{language}}</option>
+
+        </select>
+    </div>
+  </div>
+
+
+
+
+
+
+      <button> Sign Up </button>
+    </form>
+
+  </div>
+
 
   <p *ngIf="errorMessage" class="error">
     {{ errorMessage }}
   </p>
 
-  <form (ngSubmit)="doSignUp()">
-    <label for="full-name-input"> Full Name </label>
-    <input  id="full-name-input" type="text" placeholder="John Doe"
-        [(ngModel)]="signUpInfo.username" name="fullNameValue">
-    <br>
 
-    <label for="email-input"> Email </label>
-    <input  id="email-input" type="email" placeholder="Enter Email Here"
-        [(ngModel)]="signUpInfo.email" name="emailValue">
-    <br>
-
-    <label for="password-input"> Password </label>
-    <input  id="password-input" type="password" placeholder="*****"
-        [(ngModel)]="signUpInfo.password" name="passwordValue">
-    <br>
- <div>
-  <label>Select Language</label>
-  <div>
-      <select [(ngModel)]= "signUpInfo.language" name="language" class="dropdown">
-        <option>Select Language</option>
-          <option *ngFor="let language of languageArray">{{language}}</option>
-
-      </select>
-  </div>
 </div>
 
-
-
-
-
-
-    <button> Sign Up </button>
-  </form>
-
-
+<div class="login col-md-4">
   <h3> Log In </h3>
-
+  <div class=" col-md-12">
+    <div class=" signup col-md-4 col-sm-12">
   <p *ngIf="loginErrorMessage" class="error">
     {{ loginErrorMessage }}
   </p>
@@ -69,5 +85,9 @@
   </form>
   </div>
   </div>
+
+</div>
+</div>
+</div>
 </div>
 </body>

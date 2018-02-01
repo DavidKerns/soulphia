@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  apiBase: ""
+  apiBase: "",
+  socketBase: "https://learntotalk.herokuapp.com"
 };
